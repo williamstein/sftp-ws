@@ -356,7 +356,7 @@ export class SftpAttributes implements IStats {
 
     constructor(reader?: SftpPacketReader) {
         if (typeof reader === 'undefined') {
-            this.flags = 0;
+            this.flags = 0 as SftpAttributeFlags;
             return;
         }
 
@@ -433,7 +433,7 @@ export class SftpAttributes implements IStats {
 
     from(stats: IStats): void {
         if (stats == null || typeof stats === 'undefined') {
-            this.flags = 0;
+            this.flags = 0 as SftpAttributeFlags;
         } else {
             var flags = 0;
 

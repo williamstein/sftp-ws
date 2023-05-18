@@ -621,7 +621,7 @@ export class SftpServerSession {
                     var oldpath = request.readString();
                     var newpath = request.readString();
 
-                    fs.rename(oldpath, newpath, 0, err => this.sendSuccess(response, err));
+                    fs.rename(oldpath, newpath, 0 as RenameFlags, err => this.sendSuccess(response, err));
                     return;
 
                 case SftpPacketType.READLINK:

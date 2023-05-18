@@ -483,7 +483,7 @@ class SftpClientCore implements IFilesystem {
             case RenameFlags.OVERWRITE:
                 command = SftpFeature.POSIX_RENAME;
                 break;
-            case 0:
+            case 0 as RenameFlags:
                 command = SftpPacketType.RENAME;
                 break;
             default:
@@ -844,7 +844,7 @@ class SftpClientCore implements IFilesystem {
         callback(null, hashes, alg);
     }
 // #endif
-    
+
 }
 
 export interface ISftpClientEvents<T> {

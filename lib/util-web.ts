@@ -1,9 +1,9 @@
-﻿
+
 function __extends(d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}; 
+};
 
 interface ErrnoException extends Error {
     errno?: number;
@@ -54,7 +54,7 @@ class EventEmitter {
     }
 
     removeListener(event: string, listener: Function): EventEmitter {
-        var list = <Function[]>this._events[event];
+        var list = <Function[]>this._events[event] as any;
         if (typeof list === "function") {
             if (<any>list === listener) {
                 delete this._events[event];

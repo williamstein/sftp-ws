@@ -130,6 +130,7 @@ export class FilesystemPlus extends EventEmitter implements IFilesystem {
         });
     }
 
+    // @ts-ignore: this sig seems weird.
     readdir(path: string, callback?: (err: Error, items: IItem[]) => any): Task<IItem[]>
     readdir(handle: any, callback?: (err: Error, items: IItem[]|boolean) => any): Task<IItem[]|boolean>
     readdir(handle: any, callback?: (err: Error, items: IItem[]|boolean) => any): Task<IItem[]|boolean> {
@@ -157,7 +158,7 @@ export class FilesystemPlus extends EventEmitter implements IFilesystem {
             attrs = null;
         }
 
-        return this._task(callback, callback => {        
+        return this._task(callback, callback => {
             this._fs.mkdir(path, attrs, callback);
         });
     }
@@ -383,7 +384,7 @@ export class FilesystemPlus extends EventEmitter implements IFilesystem {
         toPath = toPath.removeTrailingSlash();
 
         toFs.stat(toPath.path, prepare);
-        
+
         var directories = <PathToExists>{};
 
         function prepare(err: Error, stats: IStats): void {

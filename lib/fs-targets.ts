@@ -266,7 +266,7 @@ export class BlobDataTarget extends DataTarget {
     protected _end(): void {
         var options;
         if (this._mimeType) options = { type: this._mimeType };
-        this._blob = new Blob(this._chunks, options);
+        this._blob = new Blob(this._chunks.map(chunk => new Uint8Array(chunk)), options);
         this._chunks.length = 0;
     }
 

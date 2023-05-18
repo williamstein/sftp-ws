@@ -49,8 +49,8 @@ export class LocalFilesystem implements IFilesystem {
         this.checkCallback(callback);
 
         if (Array.isArray(handle)) {
-            if (handle.closed) return FileUtil.fail("Already closed", callback);
-            handle.closed = true;
+            if ((handle as any).closed) return FileUtil.fail("Already closed", callback);
+            (handle as any).closed = true;
             process.nextTick(() => callback(null));
             return;
         }
@@ -230,12 +230,12 @@ export class LocalFilesystem implements IFilesystem {
 
     readdir(handle: any, callback: (err: Error, items: IItem[] | boolean) => any): void {
         this.checkCallback(callback);
-        if (!Array.isArray(handle) || handle.closed || typeof handle.path !== 'object') return FileUtil.fail("Invalid handle", callback);
+        if (!Array.isArray(handle) || (handle as any).closed || typeof (handle as any).path !== 'object') return FileUtil.fail("Invalid handle", callback);
 
         var windows = this.isWindows;
         var items = [];
 
-        var path = <Path>handle.path;
+        var path = <Path>(handle as any).path;
         var paths = (<string[]>handle).splice(0, 64);
 
         if (paths.length == 0) {
